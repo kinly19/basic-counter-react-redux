@@ -8,30 +8,49 @@ import { createStore } from 'redux';
 // subscribe listener 
 // listener function 
 // action
+
+// we always want to return a new state object, never make changes to the state directly
 // ==============================================================================
 
+//initialState for reducer function
+const initialState = { counter: 0, showCounter: true };
+
 //reducer function 
-const countReducer = (state = {counter: 0}, action) => {
-  if(action.type === 'increment'){
-    console.log("counter from store has incremented ")
-    return {
-      counter:state.counter + 1
-    };
-  };
+const countReducer = (state = initialState, action) => {
 
-  if(action.type === 'increase'){
-    console.log('counter from store incremented by 5')
-    return {
-      counter: state.counter + action.amount
-    };
-  };
+  if (state.showCounter) {
+    if (action.type === "increment") {
+      console.log("counter from store has incremented ");
+      return {
+        counter: state.counter + 1,
+        showCounter: state.showCounter,
+      };
+    }
 
-  if (action.type === 'decrement'){
-    console.log("counter from store has decremented")
+    if (action.type === "increase") {
+      console.log("counter from store incremented by 5");
+      return {
+        counter: state.counter + action.amount,
+        showCounter: state.showCounter,
+      };
+    }
+
+    if (action.type === "decrement") {
+      console.log("counter from store has decremented");
+      return {
+        counter: state.counter - 1,
+        showCounter: state.showCounter,
+      };
+    }
+  } 
+  
+  if (action.type === "toggleCounter") {
+    console.log("Toggled counter");
     return {
-      counter: state.counter - 1 
+      counter: state.counter,
+      showCounter: !state.showCounter,
     };
-  };
+  }
   //default state
   return state;
 };
@@ -40,18 +59,4 @@ const countReducer = (state = {counter: 0}, action) => {
 //point to our reducer function
 const store = createStore(countReducer);
 
-
-//subsbriber function
-// const countSubscribe = () => {
-//   const latestCount = store.getState();
-//   console.log(latestCount);
-//};
-
-// //listener/subscriber
-// store.subscribe(countSubscribe);
-// //action
-// store.dipatch({type: 'increment'});
-// store.dipatch({type: 'decrement'});
 export default store; 
-
-
