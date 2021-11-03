@@ -13,13 +13,21 @@ import { createStore } from 'redux';
 //reducer function 
 const countReducer = (state = {counter: 0}, action) => {
   if(action.type === 'increment'){
-    console.log("counter has incremented")
+    console.log("counter from store has incremented ")
     return {
       counter:state.counter + 1
     };
   };
 
+  if(action.type === 'increase'){
+    console.log('counter from store incremented by 5')
+    return {
+      counter: state.counter + action.amount
+    };
+  };
+
   if (action.type === 'decrement'){
+    console.log("counter from store has decremented")
     return {
       counter: state.counter - 1 
     };
