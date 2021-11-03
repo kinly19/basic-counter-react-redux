@@ -16,12 +16,15 @@ const Counter = () => {
 
   //pass a function, which we'll receive the state managed by Redux and then we return the part of the state we want to extract
   const counter = useSelector((state) => state.counter);
+  const show = useSelector((state) => state.showCounter);
   
   const latestCounter = useSelector((state) => state.counter);
   console.log(latestCounter);
 
   //handlers
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({type: 'toggleCounter'});
+  };
 
   const incrementHandler = () => {
     // dispatch action
@@ -39,7 +42,7 @@ const Counter = () => {
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increment by 5</button>
