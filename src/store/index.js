@@ -42,6 +42,26 @@ const counterSlice = createSlice({
   }
 });
 
+//Authenticate slice 
+const initialAuthState = {
+  isAuthenticated: false
+};
+
+const authSlice = createSlice({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login(state){
+      state.isAuthenticated = true;
+      console.log('logged in')
+    },
+
+    logout(state){
+      state.isAuthenticated = false;
+    }
+  }
+});
+
 // ======================= without redux toolkit =======================
 //reducer function 
 // const countReducer = (state = initialState, action) => {
