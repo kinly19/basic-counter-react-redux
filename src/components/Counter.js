@@ -17,8 +17,8 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   //pass a function, which we'll receive the state managed by Redux and then we return the part of the state we want to extract
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
   
   const latestCounter = useSelector((state) => state.counter);
   console.log(latestCounter);
