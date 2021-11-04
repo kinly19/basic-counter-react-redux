@@ -20,12 +20,13 @@ import { createSlice, configureStore } from '@reduxjs/toolkit'; //redux toolkit
 // we always want to return a new state object, never make changes to the state directly
 // ==============================================================================
 
+//counter Slice
 //initialState for reducer function
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 
 const counterSlice = createSlice({
   name: 'counter',
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment (state) {
       state.counter++;
@@ -110,10 +111,11 @@ const authSlice = createSlice({
 //point to our reducer function
 
 const store = configureStore({
-  reducer: counterSlice.reducer 
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer } 
 });
 
 export const counterActions = counterSlice.actions; //this allows us to use all our different actions
+export const authActions = authSlice.actions;
 // alternative
 // export const { increment, decrement, increase, toggle} = counterSlice.actions;
 export default store; 
